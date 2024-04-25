@@ -1,0 +1,16 @@
+---
+- name: uninstall multiple packages in centos and ubuntu
+  hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: uninstalling packages in ubuntu
+    ansible.builtin.apt:
+      name:  "{{ item.pkg }}" 
+      state: "{{ item.setup }}"
+    loop:
+      - { pkg: 'git',  setup: 'present' }
+      - { pkg: 'make', setup: 'latest' }
+      - { pkg: 'wget', setup: 'absent' }
+      - { pkg: 'tree', setup: 'absent' }

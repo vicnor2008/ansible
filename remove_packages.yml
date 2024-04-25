@@ -1,0 +1,26 @@
+---
+- name: uninstall multiple packages in centos and ubuntu
+  hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: uninstalling packages in ubuntu
+    ansible.builtin.apt:
+      name: [ 'git', 'wget' ] 
+      state: absent
+
+  - name: uninstalling packages in centos
+    yum:
+      name: ['git','wget']
+      state: absent
+  
+  - name: installing packages in ubuntu
+    ansible.builtin.apt:
+      name: ['telnet','tree','make']
+      state: present
+
+  - name: installing packages in centos
+    yum:
+      name:  ['telnet','tree','make']
+      state: present 

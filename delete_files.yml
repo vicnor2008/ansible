@@ -1,0 +1,11 @@
+---
+- name: deleting files or directories
+  hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: delete a file or directory
+    file:
+      path: /opt/dir1
+      state: absent

@@ -1,0 +1,13 @@
+---
+- name: creating files or directories
+  hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: create a file
+    file:
+      path: /opt/dir1
+      state: directory
+      mode: 0755 
+      owner: ansadmin

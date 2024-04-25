@@ -1,0 +1,18 @@
+---
+- name: install multiple packages
+  hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+  - name: installing packages
+    ansible.builtin.apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - git
+      - wget
+      - tree
+      - make
+      - telnet
+      - gzip

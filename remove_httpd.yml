@@ -1,0 +1,18 @@
+---
+- name: removing packages
+  hosts: all
+  become: true
+#  gather_facts: no
+
+  tasks:
+  - name: remove httpd packages
+    yum:
+      name: httpd
+      state: absent
+    when: ansible_os_family == "RedHat"
+
+  - name: remove apache2 package
+    apt:
+      name: apache2
+      state: absent
+    when: ansible_os_family == "Debian"
